@@ -9,6 +9,18 @@ contract School {
         address[] teachers;
         mapping(address => bool) approvals;
     }
+    // event TeacherRequested(address indexed student, address indexed teacher);
+
+    // // ...
+
+    // function requestApproval(address[] calldata teachersList) external {
+    //     require(students[msg.sender], "Only registered students can request approval.");
+    //     for(uint i = 0; i < teachersList.length; i++) {
+    //     require(teachers[teachersList[i]], "Only registered teachers can be requested for approval.");
+    //     emit TeacherRequested(msg.sender, teachersList[i]);
+    // }
+    //     // ...
+    // }   
 
     mapping(address => Request) private requests;
 
