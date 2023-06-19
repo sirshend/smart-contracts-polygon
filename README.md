@@ -19,4 +19,5 @@ What has been done?
 To-Do:
 1. The process of selection of extra professors for any exam has to be done by the student as well as the designated guide. Right now, the student directly does this. This has to be modified. 
 2. Registration process has to be changed.
-3. Contracts for other exams and functionalities have to be added.  
+3. Contracts for other exams and functionalities have to be added.
+    * 
