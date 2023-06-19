@@ -27,7 +27,10 @@ contract School {
         for(uint i = 0; i < teachersList.length; i++) {
             require(teachers[teachersList[i]], "Only registered teachers can be requested for approval.");
         }
-        requests[msg.sender] = Request(teachersList);
+        
+        Request storage newRequest = requests[msg.sender];
+        newRequest.teachers = teachersList;
+
         emit RequestApproval(msg.sender, teachersList);
     }
 

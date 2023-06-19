@@ -11,28 +11,14 @@ contract School {
     }
 
     mapping(address => Request) private requests;
-    mapping(address => bool) public students;
-    mapping(address => bool) public teachers;
 
-    function registerStudent(address student) external {
-        students[student] = true;
-    }
-
-    function registerTeacher(address teacher) external {
-        teachers[teacher] = true;
-    }
-
-    function requestApproval(address[] calldata teachersList) external {
-        require(students[msg.sender], "Only registered students can request approval.");
-        for(uint i = 0; i < teachersList.length; i++) {
-            require(teachers[teachersList[i]], "Only registered teachers can be requested for approval.");
-        }
-        requests[msg.sender] = Request(teachersList);
-        emit RequestApproval(msg.sender, teachersList);
+    function requestApproval(address[] calldata teachers) external {
+        Request storage newRequest = requests[msg.sender];
+        newRequest.teachers = teachers;
+        emit RequestApproval(msg.sender, teachers);
     }
 
     function approveRequest(address student) external {
-        require(teachers[msg.sender], "Only registered teachers can approve.");
         Request storage request = requests[student];
         require(isTeacher(request, msg.sender), "Only requested teacher can approve.");
         require(!request.approvals[msg.sender], "Teacher has already approved.");
